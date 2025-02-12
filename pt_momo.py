@@ -85,6 +85,7 @@ def _parse_response_from_url(url: str):
             )
             url = response.url
         result = urlparse(url)
+        logger.info(f"_parse_response_from_url {result}")
         good_id = re.search(r'i_code=(\d+)', result.query).group(1)
     finally:
         if good_id is None:
