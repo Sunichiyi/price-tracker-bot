@@ -87,6 +87,8 @@ def _parse_response_from_url(url: str):
         result = urlparse(url)
         logger.info(f"_parse_response_from_url {result}")
         good_id = re.search(r'i_code=(\d+)', result.query).group(1)
+    except Exception:
+        logger.error(f"_parse_response_from_url catch an exception. url:{url}", exc_info=True)
     finally:
         if good_id is None:
             raise pt_error.NotValidMomoURLException
